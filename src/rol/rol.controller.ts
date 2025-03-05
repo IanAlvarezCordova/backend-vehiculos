@@ -1,4 +1,4 @@
-import { Controller, Delete, Get, Param, Post} from "@nestjs/common";
+import { Controller, Delete, Get, HttpCode, Param, Post} from "@nestjs/common";
 import { RolService } from "./rol.service";
 import { Rol } from "./rol.entity";
 import { Body } from "@nestjs/common";
@@ -37,6 +37,7 @@ export class RolController {
 
     //metodo para eliminar
     @Delete(':id')
+    @HttpCode(204)
     delete(@Param('id') id: number): Promise<void>{
         return this.rolService.delete(id);
     }

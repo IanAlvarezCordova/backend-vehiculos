@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Put, Delete, Param, Body, ParseIntPipe } from '@nestjs/common';
+import { Controller, Get, Post, Put, Delete, Param, Body, ParseIntPipe, HttpCode } from '@nestjs/common';
 import { VehiculoService } from './vehiculo.service';
 import { Vehiculo } from './vehiculo.entity';
 
@@ -30,6 +30,7 @@ export class VehiculoController {
   }
 
   @Delete(':id')
+  @HttpCode(204)
   async delete(@Param('id', ParseIntPipe) id: number): Promise<void> {
     return await this.vehiculoService.delete(id);
   }

@@ -1,4 +1,4 @@
-import { Controller, Delete, Get, Param, Post, Put, Body, ParseIntPipe } from "@nestjs/common";
+import { Controller, Delete, Get, Param, Post, Put, Body, ParseIntPipe, HttpCode } from "@nestjs/common";
 import { UsuarioService } from "./usuario.service";
 import { Usuario } from "./usuario.entity";
 
@@ -32,8 +32,9 @@ export class UsuarioController {
 
     // Método para eliminar un usuario
     @Delete(':id')
-    delete(@Param('id') id: number): Promise<void> {
-        return this.usuarioService.delete(id);
+    @HttpCode(204) 
+    async delete(@Param('id', ParseIntPipe) id: number): Promise<void> {
+        await this.usuarioService.delete(id); // Sin retorno, ya que 204 no lleva cuerpo
     }
 
     // Método para asignar un rol a un usuario

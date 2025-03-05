@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Put, Delete, Param, Body, ParseIntPipe } from '@nestjs/common';
+import { Controller, Get, Post, Put, Delete, Param, Body, ParseIntPipe, HttpCode } from '@nestjs/common';
 import { RegistroServicioService } from './registro-servicio.service';
 import { RegistroServicio } from './registro-servicio.entity';
 
@@ -30,6 +30,7 @@ export class RegistroServicioController {
   }
 
   @Delete(':id')
+  @HttpCode(204)
   async delete(@Param('id', ParseIntPipe) id: number): Promise<void> {
     return await this.registroServicioService.delete(id);
   }
