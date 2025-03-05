@@ -49,14 +49,7 @@ export class AuthController {
         return this.authService.login(LoginDto);
     }
 
-    // @Get('profile')
-    // @Roles(Role.ADMIN)
-    // @UseGuards(AuthGuard, RolesGuard)
-    // profile(
-    //     @Req() req: Request & { user: { email: string, roles: Rol[] } },
-    // ) {
-    //     return req.user;
-    // }
+
 
     @Get('profile')
     @Auth(Role.USER)

@@ -1,4 +1,4 @@
 
 export const jwkConstants = {
-    secret: "no utilizar aasdasdasd produccion",
+    secret: "no utilizar",
 };
