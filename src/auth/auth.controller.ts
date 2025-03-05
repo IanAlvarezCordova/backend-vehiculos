@@ -18,13 +18,8 @@ interface RequestWithUser extends Request {
         roles: Rol[];
     }
 }
-
-
-
 @Controller("auth")
 export class AuthController {
-
-
 
     constructor(
         private readonly authService: AuthService
@@ -48,8 +43,6 @@ export class AuthController {
         console.log(LoginDto);
         return this.authService.login(LoginDto);
     }
-
-
 
     @Get('profile')
     @Auth(Role.USER)

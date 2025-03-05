@@ -15,6 +15,13 @@ async function bootstrap() {
     }),
   );
 
+  app.enableCors({
+    origin: 'http://localhost:5173',  // o el puerto donde corre el front
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    credentials: true,
+  });
+  
+
   await app.listen(parseInt(process.env.PORT || '3000'));
 }
 bootstrap();

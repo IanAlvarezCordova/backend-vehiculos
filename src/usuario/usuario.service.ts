@@ -125,10 +125,6 @@ export class UsuarioService {
             throw new NotFoundException(`Rol con id ${idRol} no encontrado`);
         }
 
-        if(usuario.roles.find((r) => r.id === idRol)){
-            return usuario;
-        }
-
         usuario.roles = usuario.roles.filter((r) => r.id !== idRol);
         return await this.usuarioRepository.save(usuario);
     }
