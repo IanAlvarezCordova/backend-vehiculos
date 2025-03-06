@@ -1,6 +1,8 @@
 import { Controller, Get, Post, Put, Delete, Param, Body, ParseIntPipe, HttpCode } from '@nestjs/common';
 import { VehiculoService } from './vehiculo.service';
 import { Vehiculo } from './vehiculo.entity';
+import { Auth } from "src/auth/decorators/auth.decorator";
+import { Role } from "src/common/enum/rol.enum";
 
 @Controller('vehiculo')
 export class VehiculoController {
@@ -29,6 +31,8 @@ export class VehiculoController {
     return await this.vehiculoService.update(id, vehiculo);
   }
 
+
+  @Auth(Role.ADMIN)
   @Delete(':id')
   @HttpCode(204)
   async delete(@Param('id', ParseIntPipe) id: number): Promise<void> {

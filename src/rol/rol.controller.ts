@@ -18,7 +18,7 @@ export class RolController {
         return this.rolService.findAll();
     }
     
-    @Auth(Role.ADMIN)
+    
     @Get(':id')
     findBy(@Param('id') id: number): Promise<Rol| null>{
         return this.rolService.findOne(id);
@@ -36,6 +36,7 @@ export class RolController {
     }
 
     //metodo para eliminar
+    @Auth(Role.ADMIN)
     @Delete(':id')
     @HttpCode(204)
     delete(@Param('id') id: number): Promise<void>{

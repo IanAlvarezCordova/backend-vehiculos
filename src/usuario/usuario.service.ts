@@ -4,6 +4,7 @@ import { Repository } from "typeorm";
 import { Usuario } from "./usuario.entity";
 import { Rol } from "../rol/rol.entity";
 import { Role } from "src/common/enum/rol.enum";
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class UsuarioService {
@@ -48,7 +49,7 @@ export class UsuarioService {
         });
     }
     
-
+   
 
     // Metodo para crear un usuario
     /*
@@ -87,10 +88,11 @@ export class UsuarioService {
     }
 
     // Metodo para actualizar un usuario
-    async update(id: number, usuario: Partial<Usuario>): Promise<Usuario | null> {
-        await this.usuarioRepository.update({ id }, usuario);
-        return this.findOne(id);
-    }
+    async update(id: number, data: Partial<Usuario>): Promise<Usuario> {
+        const usuario = await this.findOne(id); // Esto lanza NotFoundException si no existe
+        Object.assign(usuario, data);
+        return await this.usuarioRepository.save(usuario);
+      }
 
     // Metodo para eliminar un usuario
     async delete(id: number): Promise<void> {

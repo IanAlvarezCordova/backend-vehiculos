@@ -45,7 +45,8 @@ export class AuthController {
     }
 
     @Get('profile')
-    @Auth(Role.USER)
+    //si el rol es user, o mecanico podra hacerlo
+    @Auth(Role.USER, Role.MECANICO)
     profile(
         @ActiveUser() user: UserActiveInterface,
     ) {
